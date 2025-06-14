@@ -7,9 +7,10 @@ import { profileAPI } from "../api/profile";
 import { usersAPI } from "../api/users";
 import calculateAge from "../utils/profile";
 import updateSearchParams from "../utils/navigation";
+import handleApiErrors from "../utils/handleApiErrors";
+
 import ProfileCard from "../components/ProfileCard";
 import News from "./News";
-import handleApiErrors from "../utils/handleApiErrors";
 
 export default function Profile() {
   const location = useLocation();
@@ -17,7 +18,7 @@ export default function Profile() {
   const [searchParams, setSearchParams] = useSearchParams();
   const queryParams = new URLSearchParams(location.search);
   const paramsId = queryParams.get("other_usr_id");
-  const otherUserId = (paramsId === userData.id ? null : paramsId);
+  const otherUserId = paramsId === userData.id ? null : paramsId;
   const navigate = useNavigate();
   const { setErrorCode, setErrorMessage } = useError();
 
@@ -92,6 +93,15 @@ export default function Profile() {
     }
   };
 
+  const sendInvite = async () => {
+    try {
+      await usersAPI.sendInvite(otherUserId);
+      setFriendSuccessMessage("Invitation sent");
+    } catch (err) {
+      handleApiErrors(err, setErrorCode, setErrorMessage);
+    }
+  };
+
   if (!dataToShow || loading) {
     return (
       <div className="container mt-5 text-center">
@@ -123,15 +133,20 @@ export default function Profile() {
             otherUserId={otherUserId}
             age={age}
             isFriend={isFriend}
+            sendInvite={sendInvite}
             loading={loading}
             handleAddFriend={handleAddFriend}
             handleRemoveFriend={handleRemoveFriend}
             handleDeleteAccount={handleDeleteAccount}
           />
-
-          <News userId={otherUserId ? otherUserId : userData.id} />
         </div>
       </div>
+
+      {/* News вне колонки — будет на всю ширину контейнера */}
+      <News
+        key={otherUserId ? otherUserId : userData.id}
+        userId={otherUserId ? otherUserId : userData.id}
+      />
     </div>
   );
 }

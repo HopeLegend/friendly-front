@@ -39,13 +39,13 @@ export default function News({ userId }) {
     <div className="container mt-4 mb-4">
       <div className="row">
         <div className="col-lg-8 mx-auto">
-          <div className="d-flex justify-content-between align-items-center mb-4">
-            <h1 className="h3 mb-0">News</h1>
-            {userData && (
-              <Link to="/news/create_news" className="btn btn-primary">
-                <i className="bi bi-plus-lg me-1"></i>add news
-              </Link>
-            )}
+          <div className="news-header d-flex justify-content-between align-items-end mb-5">
+              <h1 className="news-title">News</h1>
+              {userData && (
+                <Link to="/news/create-news" className="btn-add-news">
+                  <i className="bi bi-plus-lg me-2"></i>Add News
+                </Link>
+              )}
           </div>
 
           {loading ? (
@@ -63,7 +63,7 @@ export default function News({ userId }) {
                 <p className="card-text">
                   Be the first to share the news!
                 </p>
-                <Link to="/news/create_news" className="btn btn-primary mt-2">
+                <Link to="/news/create-news" className="btn-add-news">
                   Create news
                 </Link>
               </div>

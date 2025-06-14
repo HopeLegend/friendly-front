@@ -5,7 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import { api } from "../api/axios";
 
 const AuthContext = createContext();
-
+console.log("API URL:", api.defaults.baseURL);
 export const AuthProvider = ({ children }) => {
   const [tokenData, setTokenData] = useState(null);
   const [userData, setUserData] = useState(null); // Новое состояние для данных пользователя

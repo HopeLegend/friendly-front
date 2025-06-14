@@ -101,8 +101,8 @@ export const newsAPI = {
 
       // Сортировка по дате
       const sortedAllNews = [...allNews].sort((a, b) => {
-        const dateA = new Date(a.created_at);
-        const dateB = new Date(b.created_at);
+        const dateA = new Date(a.post_body.created_at);
+        const dateB = new Date(b.post_body.created_at);
         return dateB - dateA;
       });
 

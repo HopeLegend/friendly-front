@@ -4,7 +4,7 @@ importScripts('https://www.gstatic.com/firebasejs/9.23.0/firebase-messaging-comp
 
 // Инициализация Firebase в Service Worker
 const firebaseConfig = {
-  apiKey: "AIzaSyAXe8Kk7SRMvKrlTy0TYfHx5Y27WEB5K_Q",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "friendly-fcm.firebaseapp.com",
   projectId: "friendly-fcm",
   storageBucket: "friendly-fcm.firebasestorage.app",

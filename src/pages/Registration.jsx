@@ -19,7 +19,7 @@ export default function Register() {
       setSuccess(true); // показываем сообщение об успехе
       setTimeout(() => {
         navigate("/login"); // через 2 секунды редирект на главную
-      }, 2000);
+      }, 1000);
     } catch (err) {
       if (err?.response?.status === 422) {
         const errorMessage = err.response.data.detail[0].msg;
@@ -34,74 +34,64 @@ export default function Register() {
   };
 
   return (
-    <div className="container">
-      <div className="row justify-content-center mt-5">
-        <div className="col-md-6 col-lg-4">
-          <div className="card shadow mb-4">
-            <div className="card-body">
-              <h2 className="card-title text-center mb-4">Registration</h2>
+    <div className="register-page">
+      <div className="register-container">
+        <div className="register-card">
+          <div className="register-header">
+            <h2>Registration</h2>
+          </div>
 
-              {error && (
-                <div className="alert alert-danger mb-4">
-                  <strong>Error!</strong> {error}
-                </div>
-              )}
+          {error && (
+            <div className="alert-danger">
+              <strong>Error!</strong> {error}
+            </div>
+          )}
 
-              {success && (
-                <div className="alert alert-success mb-4">
-                  Register successful! Now you will be redirect...
-                </div>
-              )}
+          {success && (
+            <div className="alert-success">
+              Register successful! Now you will be redirect...
+            </div>
+          )}
 
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="name@example.com"
-                    required
-                    disabled={success} // блокируем поля при успехе, чтобы не было редактирования
-                  />
-                </div>
-
-                <div className="mb-4">
-                  <label htmlFor="password" className="form-label">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
-                    required
-                    disabled={success}
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="btn btn-primary w-100 mb-3"
-                  disabled={success} // блокируем кнопку при успехе
-                >
-                  Register
-                </button>
-              </form>
+          <form onSubmit={handleSubmit} className="register-form">
+            <div className="form-group">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="name@example.com"
+                className="form-input"
+                required
+                disabled={success}
+              />
             </div>
 
-            <div className="card-footer text-center">
-              Already have an account?{" "}
-              <Link to="/login" className="text-decoration-none">
-                Log in
-              </Link>
+            <div className="form-group">
+              <label htmlFor="password" className="form-label">Password</label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="form-input"
+                required
+                disabled={success}
+              />
             </div>
+
+            <button type="submit" className="btn-register w-100" disabled={success}>
+              Register
+            </button>
+          </form>
+
+          <div className="register-footer">
+            Already have an account?{" "}
+            <Link to="/login" className="link-login">
+              Log in
+            </Link>
           </div>
         </div>
       </div>

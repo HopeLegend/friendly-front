@@ -11,7 +11,7 @@ import { requestPermissionAndToken } from "./api/firebase";
 import { notifyAPI } from "./api/notify";
 import { ErrorProvider, useError } from './context/ErrorContext';
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+//import { useEffect } from "react";
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -26,9 +26,18 @@ import UserFeed from './pages/UserFeed';
 import NotFound from './pages/Errors/NotFound';
 import ErrorHandler from "./components/ErrorHandler";
 
-// 🔹 Вспомогательный компонент с логикой
-const AppContent = () => {
-  console.log('Inside AppContent'); // ✅ Должен сработать
+
+function AppContent() {
+  const { errorCode, setErrorCode } = useError();
+  const location = useLocation();
+
+    useEffect(() => {
+      if (errorCode) {
+        setErrorCode(null);
+      }
+    }, [location.pathname]);
+
+    
   const { userData } = useAuth(); // ✅ Правильно — внутри функционального компонента
   const { addNotification, loadNotifications } = useNotifications(); // ✅ Также верно
   const [firebaseRegistered, setFirebaseRegistered] = React.useState(
@@ -68,17 +77,7 @@ const AppContent = () => {
        }
      };
      initNotifications();;
-  }, [addNotification, userData, firebaseRegistered]);              //Если не будет работать убрать из квадратный скобок
-
-function AppContent() {
-  const { errorCode, setErrorCode } = useError();
-  const location = useLocation();
-
-    useEffect(() => {
-      if (errorCode) {
-        setErrorCode(null);
-      }
-    }, [location.pathname]);
+  }, [addNotification, userData, firebaseRegistered]);
 
   if (errorCode) {
     return (
@@ -93,11 +92,6 @@ function AppContent() {
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/registration" element={<Register />} />
-
       <ErrorHandler />
       <Routes>
         <Route
@@ -118,7 +112,6 @@ function AppContent() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/profile/edit"
           element={
@@ -127,7 +120,6 @@ function AppContent() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/news"
           element={
@@ -136,7 +128,6 @@ function AppContent() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/users"
           element={
@@ -145,9 +136,6 @@ function AppContent() {
             </ProtectedRoute>
           }
         />
-
-        //<Route
-        //  path="/news/create_news"                   //Смотря какой надо
         <Route
           path="/news/create-news"
           element={
@@ -169,22 +157,18 @@ function AppContent() {
       <Footer companyName="Friendly" />
     </>
   );
-};
 }
 
 function App() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <AuthProvider>
-        <BrowserRouter>
-          <NotificationProvider>
-            <AppContent />
-          </NotificationProvider>
-        </BrowserRouter>
         <ErrorProvider>
-          <BrowserRouter>
-            <AppContent />
-          </BrowserRouter>
+          <NotificationProvider>
+            <BrowserRouter>
+              <AppContent />
+            </BrowserRouter>
+          </NotificationProvider>
         </ErrorProvider>
       </AuthProvider>
     </div>

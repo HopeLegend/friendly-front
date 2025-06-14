@@ -1,0 +1,36 @@
+.news-header {
+  padding-bottom: 0.5rem;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.news-title {
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: #f0f0f0;
+  margin: 0;
+}
+
+.btn-add-news {
+  background: linear-gradient(to right, #7f3ff1, #a060f8);
+  color: #fff;
+  padding: 0.45rem 1rem;
+  border-radius: 0.6rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  text-decoration: none;
+  transition: background 0.2s ease-in-out, transform 0.2s ease;;
+  display: inline-flex;
+  align-items: center;
+
+}
+
+.btn-add-news:hover {
+  background: linear-gradient(to right, #6f32da, #8c4ce6);
+  transform: scale(1.05);
+  color: #fff;
+}
+
+.btn-add-news:active {
+  background: linear-gradient(to right, #5a29b5, #783ed1);
+}

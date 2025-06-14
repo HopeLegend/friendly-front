@@ -1,0 +1,116 @@
+/* Основной фон страницы */
+.register-page {
+  background-color: #000;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Центрированный контейнер */
+.register-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Карточка формы */
+.register-card {
+  background-color: #1a1a1a;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.05);
+  padding: 30px 25px;
+}
+
+/* Заголовок */
+.register-header h2 {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 25px;
+  color: white;
+}
+
+/* Группы полей */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Лейблы */
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* Поля ввода */
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  background: linear-gradient(to right, #ffeb3b, #ff9800); /* Желто-оранжевый градиент */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Кнопка Register */
+.btn-register {
+  width: 100%;
+  background: linear-gradient(to right, #3f51b5, #9c27b0);
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-register:hover {
+  background: linear-gradient(to right, #303f9f, #673ab7);
+}
+
+/* Сообщение об ошибке */
+.alert-danger {
+  background-color: #3a0f0f;
+  color: #ff6b6b;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Сообщение об успехе */
+.alert-success {
+  background-color: #0f3a1f;
+  color: #66bb6a;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Футер с ссылкой Login */
+.register-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.link-login {
+  color: #e67e22; /* Оранжевый цвет */
+  text-decoration: none;
+  margin-left: 4px;
+}
+
+.link-login:hover {
+  text-decoration: underline;
+}

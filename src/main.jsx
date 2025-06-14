@@ -6,6 +6,9 @@ import './styles/profile.css';
 import './styles/friend.css';
 import './styles/errors.css';
 import './styles/edit_form.css';
+import './styles/login.css'
+import './styles/register.css'
+import './styles/news.css'
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
